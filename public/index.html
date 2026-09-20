@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2563eb" />
+  <title>星图 AI · 智能创作工作台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/selection.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">✦</span><span>星图<span class="brand-ai">AI</span></span></div>
+    <button class="new-task" id="newTask">＋ 新建任务</button>
+    <div class="current">当前：<strong id="taskName">AI 做图 #1</strong></div>
+    <div class="top-actions"><span class="status-dot" id="statusDot"></span><span id="statusText">检查接口中</span><button class="login">登录 / 注册</button></div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="side-group"><p>创作工作台</p>
+      <button><span>▧</span> 商品底图</button><button><span>▤</span> 商品详情页</button><button><span>◎</span> 海外电商</button>
+      <button><span>♢</span> 设计海报 <b>NEW</b></button><button class="active"><span>▣</span> AI 做图</button><button><span>▦</span> AI PPT</button>
+    </div>
+    <div class="side-group"><p>趣味工具</p><button><span>☝</span> AI 看相 <i>BETA</i></button><button><span>◉</span> 灵感广场</button></div>
+    <div class="side-group"><p>账号</p><button><span>◯</span> 个人中心</button><button><span>◉</span> 购买点数</button></div>
+    <button class="draft-button"><span>▱</span> 草稿箱 <em id="draftCount">0</em></button>
+  </aside>
+
+  <main>
+    <nav class="steps"><span class="on">1 描述画面</span><b>›</b><span>2 生成中</span><b>›</b><span>3 浏览 / 下载</span></nav>
+    <section class="workspace">
+      <div class="hero-copy"><div class="eyebrow">AI IMAGE STUDIO</div><h1>把一句灵感，变成一张好图</h1><p>描述你想要的画面，选择风格和比例，剩下的交给 AI</p></div>
+
+      <div class="quick-title">💡 试试这些灵感 <small>点击即可选中并自动填入，仍可自由修改</small></div>
+      <div class="quick-grid" id="quickGrid"></div>
+
+      <div class="section-title"><span>🎨</span><div>选择视觉风格<small>当前：<strong id="selectedStyleText">真实摄影</strong> · 风格会自动拼接到提示词中</small></div></div>
+      <div class="styles" id="styles"></div>
+
+      <div class="creator-card">
+        <div class="upload-row">
+          <label class="upload-box" id="uploadBox"><input id="fileInput" type="file" accept="image/*" multiple hidden><span class="upload-icon">＋</span><span><strong>上传参考图</strong><small>支持 PNG / JPG，单张不超过 15MB</small></span></label>
+          <div class="preview-list" id="previewList"></div>
+        </div>
+        <textarea id="prompt" maxlength="8000" placeholder="描述你想生成的画面，例如：一只戴着宇航员头盔的橘猫，漂浮在蓝色星云中，电影级光影……"></textarea>
+        <div class="settings">
+          <div class="setting"><label>图片模型</label><select id="model"><option value="gpt-image-2.5">gpt-image-2.5（推荐）</option></select></div>
+          <div class="setting"><label>画面比例</label><div class="segmented" id="sizes"><button data-size="1024x1024" class="selected">1:1</button><button data-size="1536x1024">3:2</button><button data-size="1024x1536">2:3</button></div></div>
+          <div class="setting"><label>画质</label><select id="quality"><option value="standard">标准</option><option value="hd">高清</option><option value="high">高质量</option></select></div>
+          <div class="setting"><label>张数</label><select id="count"><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+          <span class="char-count"><span id="charCount">0</span> / 8000</span>
+          <button class="generate" id="generate"><span>✦</span> 立即生成</button>
+        </div>
+      </div>
+
+      <section class="results hidden" id="results"><div class="result-head"><div><h2>创作结果</h2><p id="resultMeta"></p></div><button id="clearResults">清空结果</button></div><div class="result-grid" id="resultGrid"></div></section>
+    </section>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

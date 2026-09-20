@@ -1,0 +1,46 @@
+/* 灵感与风格卡片的明确选中反馈 */
+.quick-card { position: relative; }
+.quick-card.selected {
+  border-color: #2b78f2;
+  background: #f2f7ff;
+  box-shadow: 0 0 0 2px #dbe9ff;
+}
+.quick-card.selected::after {
+  content: "✓";
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #2b78f2;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+.section-title small strong { color: #2878f0; }
+.style-card.selected {
+  border-color: #1670ff;
+  outline: 3px solid #cfe1ff;
+  outline-offset: 1px;
+  box-shadow: 0 0 0 2px #fff inset;
+}
+.style-card.selected::before {
+  content: "✓";
+  position: absolute;
+  z-index: 3;
+  right: 7px;
+  top: 7px;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #1670ff;
+  color: #fff;
+  border: 2px solid #fff;
+  text-shadow: none;
+  font-size: 12px;
+}
